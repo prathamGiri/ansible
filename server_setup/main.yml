@@ -1,0 +1,28 @@
+---
+
+- name: Setup newly added vms with vim, git.
+  hosts: all_vms
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Ensure ansible key is present 
+      authorized_key:
+        user: ansible
+        state: present
+        key: "{{ ssh_public_key }}"
+
+    - name: Update package index
+      yum: 
+        update_cache: yes
+    
+    - name: Install pip, vim, git
+      yum: 
+        name: "{{ new_packages }}"
+        state: present
+
+    
+      
+
+    
+
+    
