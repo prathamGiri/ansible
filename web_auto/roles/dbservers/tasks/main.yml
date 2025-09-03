@@ -1,0 +1,10 @@
+- name: Install MariaDB database on RHEL
+  yum: 
+    name: "{{ db_packages }}"
+    state: present 
+
+- name: Starting mysql and enabling it
+  service:
+    name: mariadb
+    state: started
+    enabled: yes

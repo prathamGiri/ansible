@@ -1,0 +1,10 @@
+- name: Install Apache Webserver on RHEL
+  yum: 
+    name: "{{ web_packages }}"
+    state: present
+
+- name: Starting apache2 and enabling it on RHEL 
+  service:
+    name: httpd
+    state: started
+    enabled: yes

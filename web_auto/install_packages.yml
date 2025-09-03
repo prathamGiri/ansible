@@ -1,0 +1,17 @@
+---
+
+- name: Install, start service and configer firewall for Apache on webservers
+  hosts: webservers
+  become: True
+  gather_facts: true
+  roles:
+    - webservers
+    - firewall
+
+- name: Install, start service and configer firewall for MariaDB on dbservers
+  hosts: dbservers
+  become: True
+  gather_facts: false
+  roles:
+    - dbservers
+    - firewall

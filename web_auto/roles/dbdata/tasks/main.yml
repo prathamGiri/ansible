@@ -1,0 +1,27 @@
+- name: Copy the db dump to dbservers
+  copy:
+    src: "{{ sql_file_src }}"
+    dest: "/tmp/{{ database_name }}.sql"
+
+- name: Ensure bookshelf_data database exists
+  community.mysql.mysql_db:
+    name: "{{ database_name }}"
+    state: present
+    login_unix_socket: /var/lib/mysql/mysql.sock
+
+- name: Import the .sql file into bookshelf_data
+  community.mysql.mysql_db:
+    name: "{{ database_name }}"
+    state: import
+    target: "/tmp/{{ database_name }}.sql"
+    login_unix_socket: /var/lib/mysql/mysql.sock
+  ignore_errors: yes
+
+- name: Create application user and grant privileges
+  community.mysql.mysql_user:
+    name: "{{ admin_name }}"
+    password: "{{ admin_pass }}"
+    priv: "{{ database_name }}.*:ALL"
+    host: "%"
+    state: present
+    login_unix_socket: /var/lib/mysql/mysql.sock

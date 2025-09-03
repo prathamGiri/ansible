@@ -1,0 +1,27 @@
+# webservers rules
+- name: Firewall Config on RHEL
+  block:
+    - name: Allow http on RHEL webservers
+      firewalld:
+        port: "{{ http_port }}/tcp"
+        permanent: yes 
+        state: enabled
+        immediate: yes
+
+    - name: Allow https on RHEL webservers
+      firewalld:
+        port: "{{ https_port }}/tcp"
+        permanent: yes
+        state: enabled
+        immediate: yes
+  when: "'webservers' in group_names"
+
+# dbserver rules
+
+- name: Allow  port 3306 on RHEL 
+  firewalld:
+    port: "{{ mysql_port }}/tcp"
+    permanent: yes
+    state: enabled
+    immediate: yes
+  when: "'dbservers' in group_names"

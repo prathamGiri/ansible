@@ -1,0 +1,6 @@
+- name : pull new files from github
+  git:
+    repo: "{{ repo_link }}"
+    dest: "{{ webfile_dest }}"
+    version: main
+    update: yes

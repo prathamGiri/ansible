@@ -1,0 +1,3 @@
+files_source: "{{ webfiles_dest }}"
+temp_file_dest: /var/www/html/
+webfiles_dest: /var/www/html/

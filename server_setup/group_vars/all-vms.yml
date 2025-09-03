@@ -1,6 +1,0 @@
-ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICYFEVj0stdoFY8pHdtuYwk08KFtTqxn3oozb2UYu3ja pratham@ansible-controller
-
-new_packages:
-  - vim
-  - git
-  - pip

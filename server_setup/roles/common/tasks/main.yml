@@ -1,0 +1,14 @@
+- name: Ensure ansible key is present 
+  authorized_key:
+    user: pratham
+    state: present
+    key: "{{ ssh_public_key }}"
+
+- name: Update package index
+  yum: 
+    update_cache: yes
+
+- name: Install pip, vim, git
+  yum: 
+    name: "{{ new_packages }}"
+    state: present

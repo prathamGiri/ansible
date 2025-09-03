@@ -1,0 +1,12 @@
+- name: Upload web files webservers
+  copy: 
+    src: "{{ files_source }}"
+    dest: "{{ webfiles_dest }}"
+
+- name: Replace the connection file with templete
+  template:
+    src: connection.php.j2
+    dest: "{{ temp_file_dest }}connection.php"
+    owner: www-data
+    group: www-data
+    mode: 0644

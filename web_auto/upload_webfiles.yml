@@ -1,0 +1,16 @@
+---
+
+- name: Upload webfiles to webservers
+  hosts: webservers
+  become: true 
+  gather_facts: true 
+  roles:
+    - pullfiles
+    - webfiles
+
+- name: Upload db to dbserver
+  hosts: dbservers
+  become: true 
+  gather_facts: false
+  roles:
+    - dbdata
