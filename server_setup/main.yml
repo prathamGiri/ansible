@@ -1,13 +1,13 @@
 ---
 
 - name: Setup newly added vms with vim, git.
-  hosts: all_vms
+  hosts: all-vms
   gather_facts: false
   become: true
   tasks:
     - name: Ensure ansible key is present 
       authorized_key:
-        user: ansible
+        user: pratham
         state: present
         key: "{{ ssh_public_key }}"
 
