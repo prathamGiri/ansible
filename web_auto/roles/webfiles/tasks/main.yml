@@ -7,6 +7,6 @@
   template:
     src: connection.php.j2
     dest: "{{ temp_file_dest }}connection.php"
-    owner: www-data
-    group: www-data
+    owner: apache
+    group: apache
     mode: 0644
