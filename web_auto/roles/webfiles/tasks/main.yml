@@ -1,6 +1,6 @@
 - name: Upload web files webservers
   copy: 
-    src: "{{ files_source }}"
+    src: "{{ webfile_controller_path }}"
     dest: "{{ webfiles_dest }}"
 
 - name: Replace the connection file with templete

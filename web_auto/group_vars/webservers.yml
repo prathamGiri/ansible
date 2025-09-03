@@ -5,4 +5,4 @@ web_packages:
   - php-cli
   - php-common
 
-webfile_dest: ~/dash_code/
+webfile_controller_path: ~/dash_code/

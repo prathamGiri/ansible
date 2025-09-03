@@ -1,6 +1,8 @@
 - name : pull new files from github
   git:
     repo: "{{ repo_link }}"
-    dest: "{{ webfile_dest }}"
+    dest: "{{ webfile_controller_path }}"
     version: main
     update: yes
+  delegate_to: localhost
+  run_once: true
