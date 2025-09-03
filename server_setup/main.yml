@@ -1,7 +1,7 @@
 ---
 
 - name: Setup newly added vms with vim, git.
-  hosts: all_vms
+  hosts: all-vms
   gather_facts: false
   become: true
   tasks:
