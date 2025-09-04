@@ -3,13 +3,13 @@
     src: "{{ sql_file_src }}"
     dest: "/tmp/{{ database_name }}.sql"
 
-- name: Ensure bookshelf_data database exists
+- name: Ensure database exists
   community.mysql.mysql_db:
     name: "{{ database_name }}"
     state: present
     login_unix_socket: /var/lib/mysql/mysql.sock
 
-- name: Import the .sql file into bookshelf_data
+- name: Import the .sql file into database
   community.mysql.mysql_db:
     name: "{{ database_name }}"
     state: import
