@@ -1,0 +1,4 @@
+dbserver_hostname : "{{ hostvars[groups['dbservers'][0]].inventory_hostname }}"
+db_user : dash_user
+db_pass : StrongPassword123!
+db_name : dashboard_data

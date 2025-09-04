@@ -1,0 +1,28 @@
+---
+- name: Health Check
+  hosts: all-vms
+  become: true
+  tasks:
+
+    - name: collect facts
+      setup: 
+        filter: 
+          - ansible_date_time
+          - ansible_uptime_seconds
+          - ansible_distribution
+          - ansible_processor*
+          - ansible_memtotal_mb
+          - ansible_memfree_mb
+    
+    - name: Insert host health snapshot into MySQL details table
+      community.mysql.mysql_query:
+        login_host: "{{ dbserver_hostname }}"
+        login_user: "{{ db_user }}"
+        login_password: "{{ db_pass }}"
+        login_db: "{{ db_name }}"
+        query: >
+          INSERT INTO details (hostname, os_type, date, time, uptime, freeram, totalram, cores)
+          VALUES ('{{ inventory_hostname }}', '{{ ansible_distribution }}', '{{ ansible_date_time.date }}', '{{ ansible_date_time.time }}',
+                  '{{ ansible_uptime_seconds | default(0) }}', '{{ ansible_memfree_mb | default(0) }}',
+                  '{{ ansible_memtotal_mb | default(0) }}', '{{ ansible_processor_vcpus | default(1) }}');
+      delegate_to: localhost
